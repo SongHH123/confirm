@@ -1,7 +1,17 @@
-import Confirm from './connect.js'
+import {Confirm_St, Confirm_Tr} from "./connect.js";
 
-if(Confirm(role, uname, psw)){
-  location.href= 'http://localhost:'+${port}'/at_main.html';
-}else{
-  //이 부분부터 공부해보기
+export function goPage(){
+  if(role == "st"){
+    if(Confirm_St(uname, psw)){
+      return Confirm_St(uname, psw);
+    }else {
+      return -1;
+    }
+  }else {
+    if(Confirm_Tr(uname, psw)){
+      return Confirm_Tr(uname, psw);
+    }else {
+      return -1;
+    }
+  }
 }
