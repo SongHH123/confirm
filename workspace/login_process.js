@@ -1,6 +1,6 @@
 import {Confirm_St, Confirm_Tr} from "./connect.js";
 
-export function goPage(){
+export function goPage(role, uname, psw){
   if(role == "st"){
     if(Confirm_St(uname, psw)){
       return Confirm_St(uname, psw);
@@ -9,7 +9,7 @@ export function goPage(){
     }
   }else {
     if(Confirm_Tr(uname, psw)){
-      return Confirm_Tr(uname, psw);
+      return 10000 + Confirm_Tr(uname, psw);
     }else {
       return -1;
     }
