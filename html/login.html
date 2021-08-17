@@ -5,9 +5,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script type="module">
-  import { goPage } from 'http://localhost:4000/login_process.js'
+  import { goPage } from "./login_process.js"
 </script>
-
+<!--<script language="javascript" type="text/javascript" src="./connect.js"></script>-->
 <style>
     body {
         background: #f8f8f8;
@@ -25,27 +25,26 @@
       padding-top: 7px;
       width: 90px;
     }
-
 </style>
 
 <head>
   <title>hello</title>
 </head>
 <body>
-  <form>
+  <form name="fm">
     <div class = "container">
     <table>
       <tr><td>
         <label for="uname"><b>아 이 디</b></label>
       </td><td>
-        <input type="text" name="uname" required>
+        <input type="text" name="uname" id="name_id" required></input>
       </td><td rowspan="3">
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary" onclick="get_query()">Login</button>
       </td></tr>
       <tr><td>
         <label for="psw"><b>비밀번호</b></label>
       </td><td>
-        <input type="password" name="psw" required>
+        <input type="password" name="psw" id="psw_id" required>
       </td></tr>
       <tr><td colspan="3">
       <input type="radio" name="role" value="tr"> 교사
@@ -54,5 +53,20 @@
     </table>
   </div>
   </form>
+  <script>
+  window.onload = function (){
+    var url = document.location.href;
+    var qs = url.substring(url.indexOf('?') + 1).split('&');
+    if(qs.length == 1) return;
+
+    for(var i = 0, result = {}; i < qs.length; i++){
+        qs[i] = qs[i].split('=');
+        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+    }
+    console.log(Object.keys(result));
+    goPage(result[0], result[1], result[2])
+    return result;
+  }
+  </script>
 </body>
 </html>
